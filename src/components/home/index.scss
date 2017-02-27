@@ -1,0 +1,86 @@
+@import '../../libs/sassCore/_base.scss';
+.home-nav{
+	background-color: #b92b27;
+	height: 60px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.nav-wrap{
+	padding: 0 40px;
+}
+.nav-title{
+	line-height: 60px;
+	color: #fff;
+}
+.home-list{
+	padding: 60px 40px 0;
+}
+
+footer {
+  margin-top: 20px;
+  width: 100%;
+  padding: 15px 0 5px 0;
+  background: #b92b27;
+  color: #FFF;
+  left: 0;
+  bottom: 0;
+  vertical-align: baseline;
+}
+footer {
+  a{
+	text-decoration: none;
+	cursor: pointer;
+	color: #FFF;
+	padding: 0 4px;
+  }
+}
+.home-footer{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.text-center{
+  text-align: center;
+  margin: 0 0 10px;
+}
+.list-title{
+	font-size: 16px;
+	color: #b92b27;
+	padding: 15px 0 10px;
+	border-bottom: 2px solid #b92b27;
+}
+.list-content{
+	li{
+		border-bottom: 1px dashed #e3ecec;
+		padding: 15px 0;
+	}
+	a{
+		display: block;
+	}
+	p{
+		color: #063642;
+		font-size: 16px;
+	}
+	span{
+		color: #999;
+		font-size: 14px;
+	}
+	em{
+		font-size: 14px;
+		font-style: normal;
+		margin: 0 0 0 10px;
+	}
+}
+.home-more{
+  line-height: 25px;
+  text-align: center;
+  padding-top: 8px;
+}
+.home-loading{
+  color: #999;
+  line-height: 250px;
+  font-size: 30px;
+}
