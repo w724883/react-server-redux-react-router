@@ -4,7 +4,7 @@
   "description": "techdoc-ui",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -w && babel-node server",
+    "start": "webpack && babel-node server",
     "app": "webpack -w",
     "server": "babel-node server"
   },

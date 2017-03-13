@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 // import { render } from 'react-dom';
 import fetch from 'isomorphic-fetch';
 import * as actions from '../../actions';
+// import config from '../../config';
 if(typeof __CLIENT__ != 'undefined'){
 	require('./index.scss');
 }
@@ -10,26 +11,32 @@ if(typeof __CLIENT__ != 'undefined'){
 
 
 class Home extends React.Component{
-	getArticle(){
-		return fetch('http://localhost:1024/home').then(res => res.json()).then(json => {
-			this.setState(json);
-		})
+	constructor(props) {
+		super(props);
+		this.page = 1;
+		this.state = {
+			loading:false
+		}
 	}
-	handleClick(){
-		this.props.dispatch(actions.fetchHome());
-		console.log(4);
+	handleMore(){
+		let {state, dispatch} = this.props;
+		this.setState({loading:true});
+  		Promise.all([
+    	  dispatch(actions.fetchHome("page="+(++this.page)))
+  		]).then(() => {
+  			this.setState({loading:false});
+  		});
+		
 	}
 	componentWillMount(){
 		// this.getArticle();
-		console.log(1);
 	}
 	componentDidMount() {
-		console.log(3);
 		
 	}
 	render(){
-		console.log(2);
 		let {state} = this.props;
+		let home = state.home;
 		return (
 			<div className="home">
 				<div className="home-nav">
@@ -41,12 +48,19 @@ class Home extends React.Component{
 				<div className="home-list">
 					<div className="list-title">最新文章</div>
 					<ul className="list-content">
+						{
+							home.data && home.data.length ? home.data.map((value,key) => (
+								<li key={key}>
+									<a href={value.out_url}>
+										<p>{value.title}</p>
+										<span>{value.user_name}</span><em>{value.updated_at}</em>
+									</a>
+								</li>
+							)) : null
+						}
 					</ul>
 				</div>
-				<div className="home-loading text-center">
-					<i className="fa fa-spinner fa-spin"></i>寡人正在拼命加载中....
-				</div>
-				<div className="home-more"><a href="javascript:;">查看更多</a> </div>
+				<div className="home-more"><a href="javascript:;" onClick={this.handleMore.bind(this)}>{this.state.loading ? "努力加载中..." : "查看更多"}</a> </div>
 
 				<footer>
 					<div className="home-footer">

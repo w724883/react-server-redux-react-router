@@ -46,20 +46,19 @@ app.use((req, res) => {
       		res.redirect(redirectLocation.pathname + redirectLocation.search);
     	} else if (renderProps) {
       		Promise.all([
-        		store.dispatch(actions.fetchHome())
-	  		])
+        	  store.dispatch(actions.fetchHome("page=1"))
+	  		  ])
       		.then(() => {
         		var html = renderToString(
           			<Provider store={store}>
             			<RouterContext {...renderProps} />
           			</Provider>
         		);
-        		console.log(html);
-    			res.render('home.ejs', {
-    		        html:html,
-    		        store:JSON.stringify(store.getState())
-    		    });
-      		});
+      			res.render('home.ejs', {
+      		        html:html,
+      		        store:JSON.stringify(store.getState())
+      		    });
+        		});
     	} else {
       		res.status(404).end('Not found');
     	}

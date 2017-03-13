@@ -530,11 +530,7 @@ footer a {
   margin: 0 0 0 10px; }
 
 .home-more {
-  line-height: 25px;
-  text-align: center;
-  padding-top: 8px; }
-
-.home-loading {
   color: #999;
   line-height: 250px;
-  font-size: 30px; }
+  font-size: 30px;
+  text-align: center; }

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { Router,browserHistory } from 'react-router';
 import routes from '../src/routes';
 import store from '../src/store';
-console.log(store.getState());
+import 'babel-polyfill';
 // import { createStore } from 'redux';
 // import reducers from './reducers';
 // import { Router, browserHistory } from 'react-router';
@@ -12,6 +12,10 @@ console.log(store.getState());
 
 // const store = createStore(reducers);
 // const history = syncHistoryWithStore(browserHistory, store);
+store.subscribe(() => {
+	let _state = store.getState();
+	console.log(_state)
+});
 
 render(
     <Provider store={store}>

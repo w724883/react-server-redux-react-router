@@ -18,6 +18,14 @@ const list = (state = {}, action) => {
       		return state;
 	}
 }
+// const loading = (state = false, action) => {
+// 	switch (action.type) {
+// 		case 'SET_LOADING':
+// 			return action.data;break;
+// 		default:
+//       		return state;
+// 	}
+// }
 // export default (state = {}, action) => {
 //   	return {
 // 	    home: home(state, action),
@@ -27,6 +35,7 @@ const list = (state = {}, action) => {
 export default combineReducers({
 	home,
 	list,
+	// loading,
 	routing: routerReducer
 });
 
