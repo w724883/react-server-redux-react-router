@@ -8,9 +8,11 @@ export const fetchHome = (params) => {
 		}).then(res => {
 			return res.json();
 		}).then(json => {
-			const home = state().home;
-			if(home.data){
-				json.data = home.data.concat(json.data);
+			if(typeof __CLIENT__ != 'undefined'){
+				const home = state().home;
+				if(home.data){
+					json.data = home.data.concat(json.data);
+				}
 			}
 			return dispatch({
 		    	type: 'SET_HOME',

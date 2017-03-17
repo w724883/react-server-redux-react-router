@@ -1,17 +1,5 @@
 import express from 'express';
 import path from 'path';
-// var express = require('express');
-// var path = require('path');
-// var React = require('react');
-// var reactRouter = require('react-router');
-// var reactRedux = require('react-redux');
-// var reactDomServer = require('react-dom/server');
-// var routes = require('../src/routes');
-// var setStore = require('../src/store');
-// var RoutingContext = reactRouter.RoutingContext;
-// var match = reactRouter.match;
-// var Provider = reactRedux.Provider;
-// var renderToString = reactDomServer.renderToString;
 import React from 'react';
 import {RouterContext,match} from 'react-router';
 import { Provider } from 'react-redux';
@@ -19,8 +7,8 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import routes from '../src/routes';
 import store from '../src/store';
 import * as actions from '../src/actions';
+import url from 'url';
 var app = express();
-// var page = require("../output/server/components/home.js");
 // var ejs = require('ejs');
 app.use(express.static(path.join(__dirname, "..", "static")));
 //指定模板引擎
@@ -37,8 +25,7 @@ var server = app.listen(3000, function() {
 	console.log('Listening on port %d', server.address().port);
 });
 
-app.use((req, res) => {
-
+app.get('/',(req, res) => {
   	match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
     	if (err) {
       		res.status(500).end(`Internal Server Error ${err}`);
@@ -57,10 +44,23 @@ app.use((req, res) => {
       			res.render('home.ejs', {
       		        html:html,
       		        store:JSON.stringify(store.getState())
-      		    });
+      		    },(error,tpl) => {
+                res.send(tpl);
+              });
         		});
     	} else {
       		res.status(404).end('Not found');
     	}
   	});
+    // next();
 });
+
+app.get('/list', (req, res) => {
+  const page = url.parse(req.url,true).query.page*1;
+  res.render('test.ejs',{
+    page
+  },(error,html) => {
+    res.send(html);
+  });
+});
+

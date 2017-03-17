@@ -28936,9 +28936,11 @@
 			}).then(function (res) {
 				return res.json();
 			}).then(function (json) {
-				var home = state().home;
-				if (home.data) {
-					json.data = home.data.concat(json.data);
+				if (true) {
+					var home = state().home;
+					if (home.data) {
+						json.data = home.data.concat(json.data);
+					}
 				}
 				return dispatch({
 					type: 'SET_HOME',
@@ -29443,7 +29445,7 @@
 	});
 	exports.default = {
 		api: {
-			home: 'http://localhost:8000/home'
+			home: 'http://localhost:3000/list'
 		}
 	};
 

@@ -1,5 +1,5 @@
 export default {
 	api:{
-		home:'http://localhost:8000/home'
+		home:'http://localhost:3000/list'
 	}
 }
